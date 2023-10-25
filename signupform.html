@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey Form</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+  font-family: Roboto;
+  background-color:#C1BBDD
+}
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+#survey-form{
+  background-color:#FFFFFF;
+  font-family:Roboto;
+  max-width:90%;
+  margin:auto;
+  padding: 20px;;
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align: center;">Survey Form</h1>
+    <form id="survey-form">
+      <div class="form-group">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" required>
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" required>
+      </div>
+      <div class="form-group">
+        <label for="date-of-birth">Date of Birth:</label>
+        <input type="date" id="date-of-birth" required>
+      </div>
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <select id="country" required>
+          <option value=""></option>
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
+ <option value="UK">UK</option>
+ <option value="India">India</option>
+ <option value="Germany">Germany</option>
+ <option value="Australia">Australia</option>
+ <option value="Japan">Japan</option>
+          <!-- Add more country options here -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Gender:</label><br>
+        <input type="checkbox" id="male" value="Male">
+        <label for="male">Male</label>
+        <input type="checkbox" id="female" value="Female">
+        <label for="female">Female</label>
+      </div>
+      <div class="form-group">
+        <label for="profession">Profession:</label>
+        <input type="text" id="profession" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="mobile-number">Mobile Number:</label>
+        <input type="tel" id="mobile-number" required>
+      </div>
+      <button type="button" id="submit-button">Submit</button>
+      <button type="button" id="reset-button">Reset</button>
+    </form>
+  </div>
+
+  <!-- JavaScript to handle form submission and reset -->
+  <script>
+    const form = document.getElementById("survey-form");
+    const submitButton = document.getElementById("submit-button");
+    const resetButton = document.getElementById("reset-button");
+
+    submitButton.addEventListener("click", function () {
+      if (form.checkValidity()) {
+        const firstName = document.getElementById("first-name").value;
+        const lastName = document.getElementById("last-name").value;
+        const dateOfBirth = document.getElementById("date-of-birth").value;
+        const country = document.getElementById("country").value;
+        const gender = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(checkbox => checkbox.value).join(", ");
+        const profession = document.getElementById("profession").value;
+        const email = document.getElementById("email").value;
+        const mobileNumber = document.getElementById("mobile-number").value;
+
+        const popupContent = `
+          First Name: ${firstName}
+          Last Name: ${lastName}
+          Date of Birth: ${dateOfBirth}
+          Country: ${country}
+          Gender: ${gender}
+          Profession: ${profession}
+          Email: ${email}
+          Mobile Number: ${mobileNumber}
+        `;
+
+        alert("Survey Form Data:\n" + popupContent);
+
+        // Reset the form
+        form.reset();
+      } else {
+        alert("Please fill in all required fields.");
+      }
+    });
+
+    resetButton.addEventListener("click", function () {
+      form.reset();
+    });
+  </script>
+</body>
+</html>
